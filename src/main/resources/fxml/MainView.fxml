@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.polipoli.firebaseapp.MainController"
+            styleClass="root-pane">
+
+    <top>
+        <VBox styleClass="top-bar">
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="header-row"
+                  style="-fx-padding: 12 20 12 20;">
+                <Label text="Firebase Cloud Manager" styleClass="app-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label text="Coleccion:" styleClass="label-header"/>
+                <ComboBox fx:id="collectionCombo" prefWidth="140"/>
+                <Separator orientation="VERTICAL"/>
+                <Label text="Buscar por:" styleClass="label-header"/>
+                <ComboBox fx:id="searchByCombo" prefWidth="120"/>
+                <TextField fx:id="searchField" prefWidth="200" promptText="Valor a buscar..."/>
+                <Button fx:id="btnSearch" text="Buscar" onAction="#searchRecords" styleClass="btn-primary"/>
+                <Button fx:id="btnLoadAll" text="Todos" onAction="#loadAllRecords" styleClass="btn-secondary"/>
+            </HBox>
+            <HBox styleClass="status-bar" alignment="CENTER_LEFT" style="-fx-padding: 4 20 4 20;">
+                <Label fx:id="statusLabel" text="Iniciando conexion a Firebase..." styleClass="status-label"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox styleClass="table-container" style="-fx-padding: 12 16 8 16;">
+            <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-padding: 0 0 8 0;">
+                <Label text="Registros en la nube" styleClass="section-title"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnLoadCsv" text="Cargar CSV a Firebase" onAction="#loadFromCsv" styleClass="btn-csv"/>
+            </HBox>
+            <TableView fx:id="tableView" VBox.vgrow="ALWAYS" styleClass="data-table"/>
+        </VBox>
+    </center>
+
+    <right>
+        <VBox fx:id="formPanel" prefWidth="300" styleClass="form-panel" spacing="0"
+              style="-fx-padding: 12 16 12 12;">
+            <Label fx:id="formTitleLabel" text="Nuevo registro" styleClass="form-title"/>
+            <Separator style="-fx-padding: 8 0 12 0;"/>
+            <GridPane fx:id="formGrid" hgap="10" vgap="10">
+                <columnConstraints>
+                    <ColumnConstraints minWidth="80" prefWidth="90"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+            </GridPane>
+            <Region VBox.vgrow="ALWAYS"/>
+            <VBox spacing="8" style="-fx-padding: 16 0 0 0;">
+                <Button fx:id="btnSave" text="Insertar" onAction="#saveRecord" maxWidth="Infinity" styleClass="btn-save"/>
+                <Button fx:id="btnNewRecord" text="Nuevo registro" onAction="#newRecord" maxWidth="Infinity" styleClass="btn-new"/>
+                <Button fx:id="btnCancelEdit" text="Cancelar edicion" onAction="#cancelEdit" maxWidth="Infinity" styleClass="btn-cancel" visible="false"/>
+            </VBox>
+        </VBox>
+    </right>
+
+</BorderPane>

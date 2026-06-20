@@ -1,0 +1,13 @@
+target/
+*.class
+*.jar
+*.war
+.classpath
+.project
+.settings/
+.idea/
+*.iml
+*.iws
+*.ipr
+serviceAccountKey.json
+.env
