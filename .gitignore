@@ -11,3 +11,5 @@ target/
 *.ipr
 serviceAccountKey.json
 .env
+dependency-reduced-pom.xml
+*.bak
