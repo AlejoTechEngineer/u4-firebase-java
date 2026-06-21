@@ -26,29 +26,19 @@ Construida como parte de la **Unidad 4** del módulo *Fundamentos de la Tecnolog
 
 ## Arquitectura
 
+```mermaid
+flowchart TD
+    A[Usuario] --> B[JavaFX UI Layer - MainView.fxml / Dark theme CSS]
+    B --> C[MainController.java - Logica CRUD / CSV dispatch]
+    C --> D[FirebaseService.java - Operaciones Firestore CRUD]
+    C --> E[CSVReader - Deteccion automatica de esquema / Importacion masiva]
+    D --> F[(Google Firebase Firestore - Coleccion: students)]
+    D --> G[(Google Firebase Firestore - Coleccion: empleados)]
+    D --> H[(Google Firebase Firestore - Coleccion: productos)]
+    E --> D
+    F & G & H --> I[Resultados en TableView - Busqueda dinamica por campo]
+    I --> B
 ```
-┌─────────────────────────────────────────────────────────┐
-│                    JavaFX UI Layer                       │
-│         MainView.fxml  ·  styles.css (dark theme)       │
-└────────────────────────┬────────────────────────────────┘
-                         │ eventos / bindings
-┌────────────────────────▼────────────────────────────────┐
-│                  Controller Layer                        │
-│    MainController.java — CRUD logic · CSV dispatch      │
-└──────────┬─────────────────────────┬────────────────────┘
-           │                         │
-┌──────────▼──────────┐  ┌──────────▼──────────────────┐
-│   FirebaseService   │  │        CSVReader             │
-│  Firestore CRUD ops │  │  schema detection · parsing  │
-└──────────┬──────────┘  └─────────────────────────────┘
-           │
-┌──────────▼──────────────────────────────────────────────┐
-│              Google Firebase Firestore                   │
-│         collections: students · empleados · productos    │
-└─────────────────────────────────────────────────────────┘
-```
-
----
 
 ## Features
 
